@@ -1,23 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import AboutUs from "./pages/AboutUs";
-import ContactUs from "./pages/ContactUs";
+import React, { useState } from 'react';
+import './App.css';
+import RealTime from './RealTime';
+import RegForm from './RegForm';
+import BoomButton from './BoomButton';
 
-const App = () => {
+function App() {
+  const [showTimer, setShowTimer] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsButtonClicked(true);
+    setShowTimer(true);
+  };
+
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <div className="App">
+      <RealTime />
+      <RegForm />
+      {!isButtonClicked && (
+        <button onClick={handleButtonClick} className="blastButton">
+          ПУЛЬТ ОТ ЯДЕРКИ
+        </button>
+      )}
+      {showTimer && <BoomButton />}
+    </div>
   );
-};
+}
 
 export default App;
