@@ -1,28 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ToDoList from './ToDoList';
+import NamesList from './NamesList';
 import './App.css';
-import RealTime from './RealTime';
-import RegForm from './RegForm';
-import BoomButton from './BoomButton';
 
 function App() {
-  const [showTimer, setShowTimer] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  const handleButtonClick = () => {
-    setIsButtonClicked(true);
-    setShowTimer(true);
-  };
-
   return (
     <div className="App">
-      <RealTime />
-      <RegForm />
-      {!isButtonClicked && (
-        <button onClick={handleButtonClick} className="blastButton">
-          ПУЛЬТ ОТ ЯДЕРКИ
-        </button>
-      )}
-      {showTimer && <BoomButton />}
+      <h1 className="title">To-Do List</h1>
+      <ToDoList />
+      <h2 className="title">All names</h2>
+      <NamesList />
     </div>
   );
 }
